@@ -46,7 +46,7 @@ list_push_back:
 
     # %r10 = %r9->head
     movq (%r9), %r10
-    # $if (%r10 != NULL) goto L.list_has_element
+    # if (%r10 != NULL) goto L.list_has_element
     testq %r10, %r10
     jne L.list_has_element
     # %r9->p_head = %rcx
@@ -57,7 +57,7 @@ list_push_back:
     L.list_has_element:
     # %r11 = %r10->next
     movq (%r10), %r11
-    # $if (%r11 == NULL) goto L.list_last_element
+    # if (%r11 == NULL) goto L.list_last_element
     testq %r11, %r11
     je L.list_last_element
     # %r10 = %r11
@@ -79,7 +79,7 @@ list_length:
     L.process_next_item:
     # %rcx = %rcx[0]
     movq (%rcx), %rcx
-    # $if (%rcx == NULL) goto L.done
+    # if (%rcx == NULL) goto L.done
     testq %rcx, %rcx
     je L.done
     # %rax += 1
@@ -108,7 +108,7 @@ list_traverse:
     movq (%rcx), %rcx
 
     L.process_next_item.1:
-    # $if (%rcx == NULL) goto L.done.1
+    # if (%rcx == NULL) goto L.done.1
     testq %rcx, %rcx
     je L.done.1
     # callback(%rcx + 16, %rcx->item_size, ctx)
@@ -142,7 +142,7 @@ list_drop:
     # %rcx = list->head
     mov (%rcx), %rcx
     L.process_next_item.2:
-    # $if (%rcx == NULL) goto L.done.2
+    # if (%rcx == NULL) goto L.done.2
     testq %rcx, %rcx
     je L.done.2
     # %rbx = %rcx->next
